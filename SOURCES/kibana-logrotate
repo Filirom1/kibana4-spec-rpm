@@ -1,0 +1,10 @@
+/var/log/kibana/*.log {
+  copytruncate
+  daily
+  rotate 366
+  compress
+  delaycompress
+  missingok
+  notifempty
+  create 644 kibana kibana
+}

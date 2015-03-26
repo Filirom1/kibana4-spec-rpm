@@ -1,0 +1,2 @@
+CONFIG_PATH=/etc/kibana/kibana.yml
+NODE_ENV=production
