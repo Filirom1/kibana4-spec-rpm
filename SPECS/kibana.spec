@@ -1,17 +1,15 @@
-Name:		  kibana
-Version:	4.0.1
-Release:	1%{?dist}
-Summary:	Explore & Visualize Your Data
-Group:		Applications/Internet
-License:	ASL 2.0
-URL:		  https://www.elastic.co/products/%{name}
-Source0:	https://download.elasticsearch.org/%{name}/%{name}/%{name}-%{version}-linux-x64.tar.gz
+Name:     kibana
+Version:  4.0.1
+Release:  1%{?dist}
+Summary:  Explore & Visualize Your Data
+Group:    Applications/Internet
+License:  ASL 2.0
+URL:      https://www.elastic.co/products/%{name}
+Source0:  https://download.elasticsearch.org/%{name}/%{name}/%{name}-%{version}-linux-x64.tar.gz
 Source1:  kibana-sysconfig
 Source2:  kibana-logrotate
 Source3:  kibana.service
-
-#BuildRequires:	
-Requires:	nodejs
+Requires: nodejs
 
 %description
 Explore & Visualize Your Data
