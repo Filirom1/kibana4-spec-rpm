@@ -1,5 +1,5 @@
 Name:     kibana
-Version:  4.0.1
+Version:  4.0.2
 Release:  1%{?dist}
 Summary:  Explore & Visualize Your Data
 Group:    Applications/Internet
@@ -100,5 +100,8 @@ exit
 
 
 %changelog
+* Thu Apr 14 2015 Romain Philibert <romain.philibert@worldline.com> 4.0.2-1
+- bump version
+
 * Thu Mar 26 2015 Romain Philibert <romain.philibert@worldline.com> 4.0.1-1
 - new package for kibana4
