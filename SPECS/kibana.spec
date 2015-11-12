@@ -1,5 +1,5 @@
 Name:     kibana
-Version:  4.0.1
+Version:  4.2.0
 Release:  1%{?dist}
 Summary:  Explore & Visualize Your Data
 Group:    Applications/Internet
@@ -9,16 +9,13 @@ Source0:  https://download.elasticsearch.org/%{name}/%{name}/%{name}-%{version}-
 Source1:  kibana-sysconfig
 Source2:  kibana-logrotate
 Source3:  kibana.service
-Requires: nodejs
 
 %description
 Explore & Visualize Your Data
 
 %prep
 %setup -q -n %{name}-%{version}-linux-x64
-rm -fr node
 ln -s `pwd`/src src/server
-ln -s `pwd`/src/package.json package.json
 
 %build
 true
@@ -44,7 +41,7 @@ rm -rf $RPM_BUILD_ROOT
 
 # sources
 %{__mkdir} -p %{buildroot}%{_datadir}/%{name}
-%{__cp} -r {src,plugins,LICENSE.txt,README.txt} %{buildroot}%{_datadir}/%{name}/
+%{__cp} -r {LICENSE.txt,README.txt,bin,installedPlugins,node_modules,optimize,package.json,src,webpackShims} %{buildroot}%{_datadir}/%{name}/
 
 %files
 %defattr(-,root,root,-)
@@ -66,7 +63,12 @@ rm -rf $RPM_BUILD_ROOT
 %doc "/usr/share/kibana/README.txt"
 
 "/usr/share/kibana/src"
-"/usr/share/kibana/plugins"
+"/usr/share/kibana/bin"
+"/usr/share/kibana/installedPlugins"
+"/usr/share/kibana/node_modules"
+"/usr/share/kibana/optimize"
+"/usr/share/kibana/package.json"
+"/usr/share/kibana/webpackShims"
 
 
 %pre -p /bin/sh
@@ -100,5 +102,8 @@ exit
 
 
 %changelog
+* Mon Nov 16 2015 Romain Philibert <romain.philibert@worldline.com> 4.2.0-1
+- Update Kibana to version 4.2.0
+
 * Thu Mar 26 2015 Romain Philibert <romain.philibert@worldline.com> 4.0.1-1
 - new package for kibana4
