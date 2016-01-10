@@ -10,6 +10,8 @@ Source1:  kibana-sysconfig
 Source2:  kibana-logrotate
 Source3:  kibana.service
 
+%define debug_package %{nil}
+
 %description
 Explore & Visualize Your Data
 
@@ -41,7 +43,11 @@ rm -rf $RPM_BUILD_ROOT
 
 # sources
 %{__mkdir} -p %{buildroot}%{_datadir}/%{name}
-%{__cp} -r {LICENSE.txt,README.txt,bin,installedPlugins,node_modules,optimize,package.json,src,webpackShims} %{buildroot}%{_datadir}/%{name}/
+%{__cp} -r {LICENSE.txt,README.txt,bin,installedPlugins,node,node_modules,optimize,package.json,src,webpackShims} %{buildroot}%{_datadir}/%{name}/
+
+# config symlink
+#ln -sf %{buildroot}%{_sysconfdir}/kibana %{buildroot}%{_datadir}/%{name}/config
+ln -sf ../../../etc/kibana %{buildroot}%{_datadir}/%{name}/config
 
 %files
 %defattr(-,root,root,-)
@@ -65,10 +71,13 @@ rm -rf $RPM_BUILD_ROOT
 "/usr/share/kibana/src"
 "/usr/share/kibana/bin"
 "/usr/share/kibana/installedPlugins"
+"/usr/share/kibana/node"
 "/usr/share/kibana/node_modules"
 "/usr/share/kibana/optimize"
 "/usr/share/kibana/package.json"
 "/usr/share/kibana/webpackShims"
+
+%attr(775,-,kibana) "/usr/share/kibana"
 
 
 %pre -p /bin/sh
