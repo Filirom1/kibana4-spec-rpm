@@ -1,5 +1,5 @@
 Name:     kibana
-Version:  4.2.0
+Version:  4.3.1
 Release:  1%{?dist}
 Summary:  Explore & Visualize Your Data
 Group:    Applications/Internet
@@ -45,10 +45,6 @@ rm -rf $RPM_BUILD_ROOT
 %{__mkdir} -p %{buildroot}%{_datadir}/%{name}
 %{__cp} -r {LICENSE.txt,README.txt,bin,installedPlugins,node,node_modules,optimize,package.json,src,webpackShims} %{buildroot}%{_datadir}/%{name}/
 
-# config symlink
-#ln -sf %{buildroot}%{_sysconfdir}/kibana %{buildroot}%{_datadir}/%{name}/config
-ln -sf ../../../etc/kibana %{buildroot}%{_datadir}/%{name}/config
-
 %files
 %defattr(-,root,root,-)
 %dir %config(noreplace) "/etc/sysconfig"
@@ -77,7 +73,7 @@ ln -sf ../../../etc/kibana %{buildroot}%{_datadir}/%{name}/config
 "/usr/share/kibana/package.json"
 "/usr/share/kibana/webpackShims"
 
-%attr(775,-,kibana) "/usr/share/kibana"
+%attr(775,-,kibana) "/usr/share/kibana/optimize"
 
 
 %pre -p /bin/sh
